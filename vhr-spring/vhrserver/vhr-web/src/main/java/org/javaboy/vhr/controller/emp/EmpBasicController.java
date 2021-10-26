@@ -39,11 +39,13 @@ public class EmpBasicController {
 
     @GetMapping("/")
     public RespPageBean getEmployeeByPage(@RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size, Employee employee, Date[] beginDateScope) {
-        return employeeService.getEmployeeByPage(page, size, employee,beginDateScope);
+        return employeeService.getEmployeeByPage(page, size, employee, beginDateScope);
     }
 
     @PostMapping("/")
     public RespBean addEmp(@RequestBody Employee employee) {
+        System.out.println("""
+                这是提示""");
         if (employeeService.addEmp(employee) == 1) {
             return RespBean.ok("添加成功!");
         }
@@ -100,7 +102,7 @@ public class EmpBasicController {
 
     @GetMapping("/export")
     public ResponseEntity<byte[]> exportData() {
-        List<Employee> list = (List<Employee>) employeeService.getEmployeeByPage(null, null, new Employee(),null).getData();
+        List<Employee> list = (List<Employee>) employeeService.getEmployeeByPage(null, null, new Employee(), null).getData();
         return POIUtils.employee2Excel(list);
     }
 
