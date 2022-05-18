@@ -1,6 +1,7 @@
 package org.javaboy.vhr.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.javaboy.vhr.model.Hr;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -25,6 +26,7 @@ import java.util.Map;
  * @GitHub https://github.com/lenve
  * @Gitee https://gitee.com/lenve
  */
+@Slf4j
 public class LoginFilter extends UsernamePasswordAuthenticationFilter {
     @Autowired
     SessionRegistry sessionRegistry;
@@ -34,15 +36,18 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
             throw new AuthenticationServiceException(
                     "Authentication method not supported: " + request.getMethod());
         }
-        String verify_code = (String) request.getSession().getAttribute("verify_code");
+        String verifyCode = (String) request.getSession().getAttribute("verify_code");
+        log.info("LoginFilter验证码：" + verifyCode);
+        log.info(obtainUsername(request));
         if (request.getContentType().contains(MediaType.APPLICATION_JSON_VALUE) || request.getContentType().contains(MediaType.APPLICATION_JSON_UTF8_VALUE)) {
             Map<String, String> loginData = new HashMap<>();
             try {
                 loginData = new ObjectMapper().readValue(request.getInputStream(), Map.class);
             } catch (IOException e) {
+                e.printStackTrace();
             }finally {
                 String code = loginData.get("code");
-                checkCode(response, code, verify_code);
+                checkCode(response, code, verifyCode);
             }
             String username = loginData.get(getUsernameParameter());
             String password = loginData.get(getPasswordParameter());
@@ -61,7 +66,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
             sessionRegistry.registerNewSession(request.getSession(true).getId(), principal);
             return this.getAuthenticationManager().authenticate(authRequest);
         } else {
-            checkCode(response, request.getParameter("code"), verify_code);
+            checkCode(response, request.getParameter("code"), verifyCode);
             return super.attemptAuthentication(request, response);
         }
     }

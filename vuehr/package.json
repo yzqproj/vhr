@@ -3,31 +3,26 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "yarn &&vue-cli-service serve",
+    "serve": "vue-cli-service serve",
     "build": "vue-cli-service build"
   },
   "dependencies": {
-    "axios": "^0.23.0",
+    "axios": "^0.27.2",
     "core-js": "^3.19.0",
-    "element-ui": "^2.15.6",
+    "element-ui": "2",
     "font-awesome": "^4.7.0",
     "sass": "^1.43.3",
-    "vue": "^2.6.14",
-    "vue-router": "^3.5.2",
-    "vuex": "^3.6.2"
+    "vue": "2",
+    "vue-router": "3",
+    "vuex": "3"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^4.5.14",
-    "@vue/cli-service": "^4.5.14",
+    "@vue/cli-plugin-babel": "5",
+    "@vue/cli-service": "5",
     "babel-plugin-component": "^1.1.1",
     "compression-webpack-plugin": "^9.0.0",
     "sass-loader": "^10.2.0",
-    "vue-template-compiler": "^2.6.14"
-  },
-  "postcss": {
-    "plugins": {
-      "autoprefixer": {}
-    }
+    "vue-template-compiler": "2"
   },
   "browserslist": [
     "> 1%",

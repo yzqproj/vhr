@@ -1,5 +1,6 @@
 package org.javaboy.vhr.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.javaboy.vhr.config.VerificationCode;
 import org.javaboy.vhr.model.RespBean;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +22,7 @@ import java.io.IOException;
  * @时间 2019-09-21 21:15
  */
 @RestController
+@Slf4j
 public class LoginController {
     @GetMapping("/login")
     public RespBean login() {
@@ -28,12 +30,13 @@ public class LoginController {
     }
 
     @GetMapping("/verifyCode")
-    public void verifyCode(HttpServletRequest request, HttpServletResponse resp) throws IOException {
+    public void verifyCode(HttpSession session, HttpServletResponse resp) throws IOException {
         VerificationCode code = new VerificationCode();
         BufferedImage image = code.getImage();
         String text = code.getText();
-        HttpSession session = request.getSession(true);
+
         session.setAttribute("verify_code", text);
+        log.info("验证码：" + session.getAttribute("verify_code"));
         VerificationCode.output(image,resp.getOutputStream());
     }
 }
