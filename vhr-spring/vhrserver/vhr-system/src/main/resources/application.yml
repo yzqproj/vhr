@@ -1,9 +1,9 @@
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
-    username: root
+    username: postgres
     password: 123456
-    url: jdbc:mysql://localhost:3306/vhr?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    url: jdbc:postgresql://localhost:5432/vhr?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
   rabbitmq:
     username: guest
     password: guest
@@ -24,3 +24,5 @@ server:
 fastdfs:
   nginx:
     host: http://192.168.91.128/
+mybatis-plus:
+  mapper-locations: classpath*:mapper/*.xml

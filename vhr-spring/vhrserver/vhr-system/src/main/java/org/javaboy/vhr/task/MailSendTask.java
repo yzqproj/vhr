@@ -25,6 +25,8 @@ public class MailSendTask {
     @Scheduled(cron = "0/10 * * * * ?")
     public void mailResendTask() {
         List<MailSendLog> logs = mailSendLogService.getMailSendLogsByStatus();
+        System.out.println("开始执行定时任务");
+
         if (logs == null || logs.size() == 0) {
             return;
         }

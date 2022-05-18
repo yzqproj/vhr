@@ -9,8 +9,14 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>vhr-model</artifactId>
-
+    <artifactId>vhr-system</artifactId>
+<dependencies>
+    <dependency>
+        <groupId>org.javaboy</groupId>
+        <artifactId>vhr-model</artifactId>
+        <version>1.0.0</version>
+    </dependency>
+</dependencies>
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
