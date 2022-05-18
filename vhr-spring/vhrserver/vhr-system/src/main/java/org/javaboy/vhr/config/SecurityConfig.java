@@ -53,7 +53,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/css/**", "/js/**", "/index.html", "/img/**", "/fonts/**", "/favicon.ico", "/verifyCode");
+        web.ignoring().antMatchers("/css/**", "/js/**", "/index.html", "/img/**", "/fonts/**", "/favicon.ico", "/verifyCode","/swagger-ui/*","/v2/api-docs/**","/v3/api-docs/**",
+                "/swagger-resources",
+                "/swagger-resources/**",
+                "/configuration/ui",
+                "/configuration/security",
+                "/swagger-ui.html/**",
+                "/webjars/**" );
     }
 
     @Bean
@@ -126,6 +132,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         }
                 )
                 .permitAll()
+
                 .and()
                 .csrf().disable().exceptionHandling()
                 //没有认证时，在这里处理结果，不要重定向

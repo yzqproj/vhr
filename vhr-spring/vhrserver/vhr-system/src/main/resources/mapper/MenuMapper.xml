@@ -7,12 +7,12 @@
     <result column="path" property="path" jdbcType="VARCHAR" />
     <result column="component" property="component" jdbcType="VARCHAR" />
     <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="icon_cls" property="icon_cls" jdbcType="VARCHAR" />
-    <result column="parent_id" property="parent_id" jdbcType="INTEGER" />
+    <result column="icon_cls" property="iconCls" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
     <result column="enabled" property="enabled" jdbcType="BIT" />
     <association property="meta" javaType="org.javaboy.vhr.model.Meta">
-      <result column="keep_alive" property="keep_alive" jdbcType="BIT" />
-      <result column="require_auth" property="require_auth" jdbcType="BIT" />
+      <result column="keep_alive" property="keepAlive" jdbcType="BIT" />
+      <result column="require_auth" property="requireAuth" jdbcType="BIT" />
     </association>
   </resultMap>
   <resultMap id="Menus2" type="org.javaboy.vhr.model.Menu" extends="BaseResultMap">
@@ -22,12 +22,12 @@
       <result column="path2" property="path" jdbcType="VARCHAR" />
       <result column="component2" property="component" jdbcType="VARCHAR" />
       <result column="name2" property="name" jdbcType="VARCHAR" />
-      <result column="icon_cls2" property="icon_cls" jdbcType="VARCHAR" />
-      <result column="parent_id2" property="parent_id" jdbcType="INTEGER" />
+      <result column="icon_cls2" property="iconCls" jdbcType="VARCHAR" />
+      <result column="parent_id2" property="parentId" jdbcType="INTEGER" />
       <result column="enabled2" property="enabled" jdbcType="BIT" />
       <association property="meta" javaType="org.javaboy.vhr.model.Meta">
-        <result column="keep_alive2" property="keep_alive" jdbcType="BIT" />
-        <result column="require_auth2" property="require_auth" jdbcType="BIT" />
+        <result column="keep_alive2" property="keepAlive" jdbcType="BIT" />
+        <result column="require_auth2" property="requireAuth" jdbcType="BIT" />
       </association>
     </collection>
   </resultMap>
